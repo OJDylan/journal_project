@@ -1,0 +1,26 @@
+{% extends 'journal/base.html' %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="centerstage">
+
+        {% if post_list %}
+            {% for post in post_list %}
+                <div class="post">
+
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <div class="date">
+                        <p>Written on: {{ post.created_date|date:"D M Y"}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>There are no journal entries right now. Head to Write to create a new journal entry.</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}

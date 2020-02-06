@@ -1,0 +1,20 @@
+{% extends 'journal/base.html' %}
+
+{% block title %}
+    <title>Details</title>
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ post.title }}</h1>
+
+    <div>
+        {{ post.created_date }}
+    </div>
+    
+    <p class='postcontent' >{{ post.text|safe|linebreaksbr }}</p>
+    
+    <br>
+    <a href="{% url 'post_remove' pk=post.pk %}"><i class="material-icons" style="font-size: 36px;">delete</i></a>
+
+{% endblock %}

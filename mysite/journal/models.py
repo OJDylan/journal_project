@@ -8,9 +8,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     neg_sentiment = models.BooleanField(default=False)
 
-    def publish(self):
-        self.save()
-
+    # Redirects the page after it is saved, this method is required when using CreateView
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'pk': self.pk})
 

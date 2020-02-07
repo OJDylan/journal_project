@@ -5,6 +5,7 @@ from django.views.generic import (TemplateView, ListView, DetailView, CreateView
 
 from .models import Post
 from .forms import PostForm
+from .depression_detection_tweets import process_message, TweetClassifier, sc_tf_idf
 
 class AboutView(TemplateView):
     template_name = 'about.html'
@@ -23,11 +24,17 @@ class PostCreateView(CreateView):
     form_class = PostForm
     model = Post
 
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        pm = process_message(post.text)
+        if sc_tf_idf.classify(pm):
+            post.neg_sentiment = True
+            post.save()
+            return super(PostCreateView, self).form_valid(form)
+        else:
+            post.save()
+            return super(PostCreateView, self).form_valid(form)
+
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
-
-def post_publish(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.publish()
-    return redirect('post_detail', pk=pk)

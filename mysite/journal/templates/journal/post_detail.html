@@ -15,6 +15,6 @@
     <p class='postcontent' >{{ post.text|safe|linebreaksbr }}</p>
     
     <br>
-    <a href="{% url 'post_remove' pk=post.pk %}"><i class="material-icons" style="font-size: 36px;">delete</i></a>
+    <a href="{% url 'post_remove' pk=post.pk %}"><i class="material-icons md-24">delete</i></a>
 
 {% endblock %}

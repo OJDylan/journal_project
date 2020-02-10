@@ -10,6 +10,9 @@ from .depression_detection_tweets import process_message, TweetClassifier, sc_tf
 class AboutView(TemplateView):
     template_name = 'about.html'
 
+class HelpView(TemplateView):
+    template_name = 'help.html'
+
 class PostListView(ListView):
     context_object_name = 'post_list'
     model = Post

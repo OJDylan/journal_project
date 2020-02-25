@@ -1,0 +1,24 @@
+{% extends 'journal/base.html' %}
+{% block title %}
+    <title>Activities</title>
+{% endblock %}
+
+{% block content %}
+<h3>Depresso Meter</h3>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"  
+role="progressbar" aria-valuenow="{{ negative }}" aria-valuemin="0" aria-valuemax="{{ max }}" style="width: {{ percentage }}%">
+    </div>
+</div>
+ 
+{% if positive > negative %}
+    <p>More Positives</p>
+{% else %}
+    <p>More Negatives</p>
+{% endif %}
+
+<p>positive posts = {{positive}}</p>
+<p>negative posts = {{negative}}</p>
+
+
+{% endblock %}

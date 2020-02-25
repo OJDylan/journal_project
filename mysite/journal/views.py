@@ -13,6 +13,19 @@ class AboutView(TemplateView):
 class HelpView(TemplateView):
     template_name = 'help.html'
 
+def ActivityView(request):
+    positive_counts = Post.objects.filter(neg_sentiment=False).count()
+    negative_counts = Post.objects.filter(neg_sentiment=True).count()
+    max_counts = positive_counts + negative_counts
+    percentage = (negative_counts/max_counts)*100
+    context = {
+        'positive':positive_counts,
+        'negative':negative_counts,
+        'max':max_counts,
+        'percentage':percentage
+    }
+    return render(request, 'journal/activities.html', context)
+
 class PostListView(ListView):
     context_object_name = 'post_list'
     model = Post

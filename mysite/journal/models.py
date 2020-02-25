@@ -3,8 +3,8 @@ from django.utils import timezone
 from django.urls import reverse
 
 class Post(models.Model):
-    title = models.CharField(max_length=256)
-    text = models.TextField()
+    title = models.CharField(max_length=100)
+    text = models.TextField(max_length=280)
     created_date = models.DateTimeField(default=timezone.now)
     neg_sentiment = models.BooleanField(default=False)
 

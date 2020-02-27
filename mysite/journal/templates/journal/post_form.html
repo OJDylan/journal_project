@@ -6,7 +6,8 @@
 
 {% block content %}
 
-    <h1>New Entry</h1>
+<div class='jumbotron'>
+    <h1>New Journal Entry</h1>
 
     <form method="POST" class="post_form">
         {% csrf_token %}
@@ -15,5 +16,6 @@
     </form>
 
     <script>var editor = new MediumEditor('.editable');</script>
+</div>
 
 {% endblock%}

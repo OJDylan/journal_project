@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, ListView, DetailView, CreateView, DeleteView)
+import random
 
 from .models import Post
 from .forms import PostForm
@@ -18,11 +19,24 @@ def ActivityView(request):
     negative_counts = Post.objects.filter(neg_sentiment=True).count()
     max_counts = positive_counts + negative_counts
     percentage = (negative_counts/max_counts)*100
+
+    if percentage <= 25:
+        activities = {
+            'activity':['Take a bath','Something','else']
+        }
+    elif percentage > 25:
+        activities = {
+            'activity':['Do this','do that']
+        }
+
+    response = random.choice(activities.get('activity',[]))
+
     context = {
         'positive':positive_counts,
         'negative':negative_counts,
         'max':max_counts,
-        'percentage':percentage
+        'percentage':percentage,
+        'test_activities':response
     }
     return render(request, 'journal/activities.html', context)
 

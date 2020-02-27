@@ -4,21 +4,33 @@
 {% endblock %}
 
 {% block content %}
+
 <h3>Depresso Meter</h3>
-<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"  
-role="progressbar" aria-valuenow="{{ negative }}" aria-valuemin="0" aria-valuemax="{{ max }}" style="width: {{ percentage }}%">
+{% if percentage > 50 %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"  
+            role="progressbar" aria-valuenow="{{ negative }}" aria-valuemin="0" aria-valuemax="{{ max }}" style="width: {{ percentage }}%">
+        {{ percentage|floatformat:0 }}%
+        </div>
     </div>
-</div>
- 
+{% else %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated"  
+            role="progressbar" aria-valuenow="{{ negative }}" aria-valuemin="0" aria-valuemax="{{ max }}" style="width: {{ percentage }}%">
+        {{ percentage|floatformat:0 }}%
+        </div>
+    </div>
+{% endif %}
+
 {% if positive > negative %}
     <p>More Positives</p>
 {% else %}
     <p>More Negatives</p>
 {% endif %}
 
-<p>positive posts = {{positive}}</p>
-<p>negative posts = {{negative}}</p>
+<p>positive posts = {{ positive }}</p>
+<p>negative posts = {{ negative }}</p>
+<p>{{ test_activities }}</p>
 
 
 {% endblock %}

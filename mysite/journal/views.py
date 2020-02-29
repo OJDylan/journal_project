@@ -22,11 +22,11 @@ def ActivityView(request):
 
     if percentage <= 25:
         activities = {
-            'activity':['Take a bath','Something','else']
+            'activity':['Take a bath','Do x','Do y']
         }
     elif percentage > 25:
         activities = {
-            'activity':['Do this','do that']
+            'activity':['Do this','Do that']
         }
 
     response = random.choice(activities.get('activity',[]))

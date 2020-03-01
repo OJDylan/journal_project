@@ -42,12 +42,17 @@
 <span>N: {{ negative }}</span>
 
 <h1>Activities:</h1>
-{% for i in activities %}
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-    <div class="card-body">
-        <p>{{ i }}</p>
-    </div>
+<div class="row">
+    {% for i in activities %}
+        <div class="col-lg-3 col-sm-6">
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+                    <p>{{ i }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
-{% endfor %}
+
 
 {% endblock %}

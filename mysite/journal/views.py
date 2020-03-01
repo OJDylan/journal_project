@@ -20,23 +20,32 @@ def ActivityView(request):
     max_counts = positive_counts + negative_counts
     percentage = (negative_counts/max_counts)*100
 
-    if percentage <= 25:
-        activities = {
-            'activity':['Take a bath','Do x','Do y']
+    if percentage > 50:
+        activities_dict = {
+            'activity':['Take a break','Get some rest','Take a stroll around your local park','Learn something new','Exercise',
+            'Go out and get some fresh air','Meditate','Relax','Get a pet','Learn to garden','Volunteer for charity',
+            'Read a book','Listen to music','Take a roadtrip','Take a long hot bath','Talk to a friend','Talk to someone',
+            'Talk to a family member','Talk to a friend','Visit the help page','Play a video game','Play boardgames with friends',
+            'Go to the beach','Take a swim','Discover new music']
         }
-    elif percentage > 25:
-        activities = {
-            'activity':['Do this','Do that']
+    elif percentage == 100:
+        activities_dict = {
+            'activity':['Talk to a friend', 'Talk to a family member','Talk to someone','Take a look at our help page','Meditate']
+        }
+    else:
+        activities_dict = {
+            'activity':['Study','Do your chores','Take a swim','Go outside','Organize your space','Learn something new',
+            'Play a video game','Listen to your favorite music','Read a book','Exercise']
         }
 
-    response = random.choice(activities.get('activity',[]))
+    response = random.sample(list(activities_dict.get('activity')),5)
 
     context = {
         'positive':positive_counts,
         'negative':negative_counts,
         'max':max_counts,
         'percentage':percentage,
-        'test_activities':response
+        'activities':response
     }
     return render(request, 'journal/activities.html', context)
 

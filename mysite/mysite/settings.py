@@ -26,7 +26,10 @@ SECRET_KEY = 'lfy*2=8osr$e-dmcqan!10v97%+d6_vana5sqc#(tbm0(omk+&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ojdylan.pythonanywhere.com',
+    'localhost'
+]
 
 
 # Application definition

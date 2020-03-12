@@ -18,14 +18,18 @@ def ActivityView(request):
     positive_counts = Post.objects.filter(neg_sentiment=False).count()
     negative_counts = Post.objects.filter(neg_sentiment=True).count()
     max_counts = positive_counts + negative_counts
-    percentage = (negative_counts/max_counts)*100
+    if(max_counts != 0):
+        percentage = (negative_counts/max_counts)*100
+    else:
+        percentage = 0
+    
 
     if percentage > 50:
         activities_dict = {
             'activity':['Take a break','Get some rest','Take a stroll around your local park','Learn something new','Exercise',
             'Go out and get some fresh air','Meditate','Relax','Get a pet','Learn to garden','Volunteer for charity',
             'Read a book','Listen to music','Take a roadtrip','Take a long hot bath','Talk to a friend','Talk to someone',
-            'Talk to a family member','Talk to a friend','Visit the help page','Play a video game','Play boardgames with friends',
+            'Talk to a family member','Talk to a friend','Visit the help page','Play a video game','Play board games with friends',
             'Go to the beach','Take a swim','Discover new music']
         }
     elif percentage == 100:

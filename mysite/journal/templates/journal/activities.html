@@ -14,7 +14,7 @@
             {{ percentage|floatformat:0 }}%
             </div>
         </div>
-    {% elif percentage <= 50 %}
+    {% elif percentage < 50 %}
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"  
                 role="progressbar" aria-valuenow="{{ negative }}" aria-valuemin="0" aria-valuemax="{{ max }}" style="width: {{ percentage|floatformat:0 }}%">
